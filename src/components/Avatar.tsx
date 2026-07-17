@@ -6,7 +6,8 @@ import studioBackground from '../assets/bg-studio.png';
 import cityBackground from '../assets/bg-city.png';
 import loftBackground from '../assets/bg-loft.png';
 import runwayBackground from '../assets/bg-runway.png';
-import type { HairId } from './FashionPanel';
+import hairOverlays from '../assets/hair-overlays-gemini.png';
+import { hairStyles, type HairId } from './FashionPanel';
 
 type Props = { height: number; view: 'front' | 'right' | 'back' | 'left'; skinIndex: number; background: string; hair: HairId };
 
@@ -16,13 +17,18 @@ export function Avatar({ height, view, skinIndex, background, hair }: Props) {
   // la taille de référence de l'image et reste entièrement dans le décor.
   const heightProgress = (height - 120) / 80;
   const scale = 0.82 + heightProgress * 0.18;
+  const selectedHair = hairStyles.find((style) => style.id === hair);
   return (
     <div className="avatar-stage" aria-label="Fashion model preview">
       <div className="scene photo-scene" style={{ backgroundImage: `url(${sceneImages[background]})` }} />
       <img key={view} className={`realistic-person character-view-${view} skin-tone-${skinIndex}`}
         src={view === 'front' ? frontMan : view === 'back' ? backMan : sideMan}
         alt={`Mannequin, vue ${view}`} style={{ '--body-scale': scale } as React.CSSProperties} />
-      {hair !== 'bald' && <span className={`game-hair game-hair-${view} game-hair-${hair}`} style={{ '--body-scale': scale, '--hair-color': '#211916' } as React.CSSProperties}><i /></span>}
+      {selectedHair && hair !== 'bald' && <span className={`photo-hair-sprite photo-hair-sprite-${view}`} style={{
+        '--body-scale': scale,
+        backgroundImage: `url(${hairOverlays})`,
+        backgroundPosition: `${selectedHair.col * 25}% ${selectedHair.row * (100 / 3)}%`,
+      } as React.CSSProperties} />}
     </div>
   );
 }

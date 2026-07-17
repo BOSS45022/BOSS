@@ -328,6 +328,35 @@
   display: block !important;
 }
 
+.photo-hair-sprite {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: 450px;
+  width: 84px;
+  height: 85px;
+  background-repeat: no-repeat;
+  background-size: 500% 400%;
+  transform: translateX(-50%) scale(var(--body-scale));
+  transform-origin: bottom center;
+  pointer-events: none;
+  transition: background-position .2s ease, transform .35s ease;
+}
+
+.photo-hair-sprite-right {
+  margin-left: -4px;
+  transform: translateX(-50%) scaleX(-.82) scale(var(--body-scale));
+}
+
+.photo-hair-sprite-left {
+  margin-left: 4px;
+  transform: translateX(-50%) scaleX(.82) scale(var(--body-scale));
+}
+
+.photo-hair-sprite-back {
+  filter: brightness(.78);
+}
+
 .fashion-panel {
   min-width: 0;
   padding: 20px;
