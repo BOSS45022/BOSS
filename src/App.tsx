@@ -3,6 +3,7 @@ import { Avatar } from './components/Avatar';
 import { skinTones } from './lib/clothes';
 import { GoogleAuth } from './components/GoogleAuth';
 import { HomeScreen, type AppTheme } from './components/HomeScreen';
+import { FashionPanel, type HairId } from './components/FashionPanel';
 
 export default function App() {
   const [started, setStarted] = useState(false);
@@ -14,6 +15,8 @@ export default function App() {
   const [view, setView] = useState<'front' | 'right' | 'back' | 'left'>('right');
   const [background, setBackground] = useState<'fitting' | 'studio' | 'city' | 'loft' | 'runway'>('fitting');
   const [openPanel, setOpenPanel] = useState<'backgrounds' | 'customize' | null>(null);
+  const [fashionCategory, setFashionCategory] = useState<'tops' | 'bottoms' | 'accessories' | 'shoes' | 'hair'>('hair');
+  const [hair, setHair] = useState<HairId>('bald');
   const backgrounds = [
     { id: 'fitting', name: 'Fitting room' }, { id: 'studio', name: 'Studio' },
     { id: 'city', name: 'Paris' }, { id: 'loft', name: 'Loft' },
@@ -40,7 +43,7 @@ export default function App() {
 
       <section className="studio scene-layout">
         <div className="model-panel">
-          <Avatar height={height} view={view} skinIndex={skinIndex} background={background} />
+          <Avatar height={height} view={view} skinIndex={skinIndex} background={background} hair={hair} />
           <nav className="bottom-toolbar">
             <button onClick={() => setOpenPanel(openPanel === 'backgrounds' ? null : 'backgrounds')}>▧ Scenes</button>
             <button onClick={() => setView((current) => {
@@ -65,6 +68,7 @@ export default function App() {
             <button className="confirm-custom" onClick={() => { setCustomizing(false); setOpenPanel(null); }}>Apply</button>
           </div>}
         </div>
+        <FashionPanel category={fashionCategory} hair={hair} onCategory={setFashionCategory} onHair={setHair} />
       </section>
     </main>
   );
