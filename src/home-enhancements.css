@@ -365,11 +365,11 @@
 .photo-hair-cornrows i { top: -1px; }
 
 .photo-hair-sprite-right {
-  transform: translateX(-50%) scaleX(-.82) scale(var(--body-scale));
+  transform: translateX(-50%) scaleX(-1) scale(var(--body-scale));
 }
 
 .photo-hair-sprite-left {
-  transform: translateX(-50%) scaleX(.82) scale(var(--body-scale));
+  transform: translateX(-50%) scaleX(1) scale(var(--body-scale));
 }
 
 .photo-hair-sprite-back {
