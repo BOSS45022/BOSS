@@ -4,23 +4,16 @@ import hairSheet from '../assets/hair-style-sheet-gemini.png';
 export const hairStyles = [
   { id: 'bald', name: 'Bald', col: 0, row: 0 },
   { id: 'buzz', name: 'Buzz cut', col: 1, row: 0 },
-  { id: 'crew', name: 'Crew cut', col: 2, row: 0 },
   { id: 'french-crop', name: 'French crop', col: 3, row: 0 },
-  { id: 'caesar', name: 'Caesar cut', col: 4, row: 0 },
   { id: 'low-fade', name: 'Low fade', col: 0, row: 1 },
-  { id: 'mid-fade', name: 'Mid fade', col: 1, row: 1 },
-  { id: 'high-fade', name: 'High fade', col: 2, row: 1 },
-  { id: 'taper-fade', name: 'Taper fade', col: 3, row: 1 },
   { id: 'waves', name: 'Waves', col: 4, row: 1 },
   { id: 'short-curls', name: 'Short curls', col: 0, row: 2 },
-  { id: 'medium-curls', name: 'Medium curls', col: 1, row: 2 },
   { id: 'afro', name: 'Afro', col: 2, row: 2 },
   { id: 'twists', name: 'Short twists', col: 3, row: 2 },
   { id: 'cornrows', name: 'Cornrows', col: 4, row: 2 },
   { id: 'box-braids', name: 'Box braids', col: 0, row: 3 },
   { id: 'dreads', name: 'Dreadlocks', col: 1, row: 3 },
   { id: 'slick', name: 'Slick back', col: 2, row: 3 },
-  { id: 'side-part', name: 'Side part', col: 3, row: 3 },
 ] as const;
 
 export type HairId = typeof hairStyles[number]['id'];
