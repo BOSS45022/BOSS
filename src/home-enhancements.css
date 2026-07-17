@@ -343,14 +343,26 @@
 
 .photo-hair-sprite i {
   position: absolute;
-  top: -18px;
-  left: 104px;
+  top: -4px;
+  left: 100px;
   display: block;
-  width: 92px;
-  height: 93px;
+  width: 100px;
+  height: 101px;
   background-repeat: no-repeat;
   background-size: 500% 400%;
 }
+
+.photo-hair-buzz i,
+.photo-hair-waves i,
+.photo-hair-slick i { top: 2px; }
+.photo-hair-french-crop i { top: -2px; }
+.photo-hair-short-curls i,
+.photo-hair-twists i { top: -7px; }
+.photo-hair-medium-curls i,
+.photo-hair-box-braids i,
+.photo-hair-dreads i { top: -10px; }
+.photo-hair-afro i { top: -13px; }
+.photo-hair-cornrows i { top: -1px; }
 
 .photo-hair-sprite-right {
   transform: translateX(-50%) scaleX(-.82) scale(var(--body-scale));

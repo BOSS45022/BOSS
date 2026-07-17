@@ -24,7 +24,7 @@ export function Avatar({ height, view, skinIndex, background, hair }: Props) {
       <img key={view} className={`realistic-person character-view-${view} skin-tone-${skinIndex}`}
         src={view === 'front' ? frontMan : view === 'back' ? backMan : sideMan}
         alt={`Mannequin, vue ${view}`} style={{ '--body-scale': scale } as React.CSSProperties} />
-      {selectedHair && hair !== 'bald' && <span className={`photo-hair-sprite photo-hair-sprite-${view}`} style={{ '--body-scale': scale } as React.CSSProperties}>
+      {selectedHair && hair !== 'bald' && <span className={`photo-hair-sprite photo-hair-sprite-${view} photo-hair-${hair}`} style={{ '--body-scale': scale } as React.CSSProperties}>
         <i style={{ backgroundImage: `url(${hairOverlays})`, backgroundPosition: `${selectedHair.col * 25}% ${selectedHair.row * (100 / 3)}%` }} />
       </span>}
     </div>
