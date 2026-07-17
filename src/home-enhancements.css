@@ -343,11 +343,11 @@
 
 .photo-hair-sprite i {
   position: absolute;
-  top: 18px;
-  left: 108px;
+  top: -18px;
+  left: 104px;
   display: block;
-  width: 84px;
-  height: 85px;
+  width: 92px;
+  height: 93px;
   background-repeat: no-repeat;
   background-size: 500% 400%;
 }
