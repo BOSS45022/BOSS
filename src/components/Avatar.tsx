@@ -6,7 +6,7 @@ import studioBackground from '../assets/bg-studio.png';
 import cityBackground from '../assets/bg-city.png';
 import loftBackground from '../assets/bg-loft.png';
 import runwayBackground from '../assets/bg-runway.png';
-import hairOverlays from '../assets/hair-overlays-gemini-clean.png';
+import hairOverlays from '../assets/hair-overlays-refined.png';
 import { hairStyles, type HairId } from './FashionPanel';
 
 type Props = { height: number; view: 'front' | 'right' | 'back' | 'left'; skinIndex: number; background: string; hair: HairId };
@@ -25,7 +25,7 @@ export function Avatar({ height, view, skinIndex, background, hair }: Props) {
         src={view === 'front' ? frontMan : view === 'back' ? backMan : sideMan}
         alt={`Mannequin, vue ${view}`} style={{ '--body-scale': scale } as React.CSSProperties} />
       {selectedHair && hair !== 'bald' && <span className={`photo-hair-sprite photo-hair-sprite-${view} photo-hair-${hair}`} style={{ '--body-scale': scale } as React.CSSProperties}>
-        <i style={{ backgroundImage: `url(${hairOverlays})`, backgroundPosition: `${selectedHair.col * 25}% ${selectedHair.row * (100 / 3)}%` }} />
+        <i style={{ backgroundImage: `url(${hairOverlays})`, backgroundPosition: `${selectedHair.overlayCol * (100 / 3)}% ${selectedHair.overlayRow * 50}%` }} />
       </span>}
     </div>
   );

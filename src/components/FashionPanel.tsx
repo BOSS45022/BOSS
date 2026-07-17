@@ -2,18 +2,18 @@ import type { CSSProperties } from 'react';
 import hairSheet from '../assets/hair-style-sheet-gemini.png';
 
 export const hairStyles = [
-  { id: 'bald', name: 'Bald', col: 0, row: 0 },
-  { id: 'buzz', name: 'Buzz cut', col: 1, row: 0 },
-  { id: 'french-crop', name: 'French crop', col: 3, row: 0 },
-  { id: 'waves', name: 'Waves', col: 4, row: 1 },
-  { id: 'short-curls', name: 'Short curls', col: 0, row: 2 },
-  { id: 'medium-curls', name: 'Medium curls', col: 1, row: 2 },
-  { id: 'afro', name: 'Afro', col: 2, row: 2 },
-  { id: 'twists', name: 'Short twists', col: 3, row: 2 },
-  { id: 'cornrows', name: 'Cornrows', col: 4, row: 2 },
-  { id: 'box-braids', name: 'Box braids', col: 0, row: 3 },
-  { id: 'dreads', name: 'Dreadlocks', col: 1, row: 3 },
-  { id: 'slick', name: 'Slick back', col: 2, row: 3 },
+  { id: 'bald', name: 'Bald', col: 0, row: 0, overlayCol: 0, overlayRow: 0 },
+  { id: 'buzz', name: 'Buzz cut', col: 1, row: 0, overlayCol: 1, overlayRow: 0 },
+  { id: 'french-crop', name: 'French crop', col: 3, row: 0, overlayCol: 2, overlayRow: 0 },
+  { id: 'waves', name: 'Waves', col: 4, row: 1, overlayCol: 3, overlayRow: 0 },
+  { id: 'short-curls', name: 'Short curls', col: 0, row: 2, overlayCol: 0, overlayRow: 1 },
+  { id: 'medium-curls', name: 'Medium curls', col: 1, row: 2, overlayCol: 1, overlayRow: 1 },
+  { id: 'afro', name: 'Afro', col: 2, row: 2, overlayCol: 2, overlayRow: 1 },
+  { id: 'twists', name: 'Short twists', col: 3, row: 2, overlayCol: 3, overlayRow: 1 },
+  { id: 'cornrows', name: 'Cornrows', col: 4, row: 2, overlayCol: 0, overlayRow: 2 },
+  { id: 'box-braids', name: 'Box braids', col: 0, row: 3, overlayCol: 1, overlayRow: 2 },
+  { id: 'dreads', name: 'Dreadlocks', col: 1, row: 3, overlayCol: 2, overlayRow: 2 },
+  { id: 'slick', name: 'Slick back', col: 2, row: 3, overlayCol: 3, overlayRow: 2 },
 ] as const;
 
 export type HairId = typeof hairStyles[number]['id'];
