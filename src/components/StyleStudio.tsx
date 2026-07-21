@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import { supabase } from '../lib/supabase';
+import { functionErrorMessage } from '../lib/functionError';
 import { stylePrompts } from '../lib/stylePrompts';
 import type { AppTheme } from './HomeScreen';
 
@@ -104,7 +105,7 @@ export function StyleStudio({ onBack, theme }: Props) {
       body: { mode: 'image-style', prompt: selectedStyle.prompt, imageData, mimeType },
     });
     setLoading(false);
-    if (invokeError || data?.error) return setError(data?.error ?? invokeError?.message ?? 'Generation failed.');
+    if (invokeError || data?.error) return setError(data?.error ?? await functionErrorMessage(invokeError, 'Generation failed.'));
     if (!data?.imageData) return setError('Gemini returned no image.');
     setResultUrl(`data:${data.mimeType ?? 'image/png'};base64,${data.imageData}`);
   };

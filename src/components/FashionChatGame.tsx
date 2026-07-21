@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent, type TouchEvent } from 're
 import { supabase } from '../lib/supabase';
 import type { AppTheme } from './HomeScreen';
 import { CharacterQuickDetails } from './CharacterQuickDetails';
+import { functionErrorMessage } from '../lib/functionError';
 
 type Gender = 'man' | 'woman';
 type StylingMode = 'ai' | 'manual';
@@ -230,7 +231,8 @@ export function FashionChatGame({ theme, onBack }: Props) {
     });
     setLoading(false);
     if (error || data?.error || !data?.imageData) {
-      setMessages((current) => [...current, { id: Date.now(), role: 'assistant', text: data?.error ?? error?.message ?? 'I could not generate the image. Please try again.' }]);
+      const message = data?.error ?? await functionErrorMessage(error, 'I could not generate the image. Please try again.');
+      setMessages((current) => [...current, { id: Date.now(), role: 'assistant', text: message }]);
       return;
     }
     const image = `data:${data.mimeType ?? 'image/png'};base64,${data.imageData}`;
@@ -310,7 +312,7 @@ export function FashionChatGame({ theme, onBack }: Props) {
     });
     setRatingLoading(false);
     if (error || data?.error || typeof data?.score !== 'number') {
-      setRatingError(data?.error ?? error?.message ?? 'The AI could not rate this look. Please try again.');
+      setRatingError(data?.error ?? await functionErrorMessage(error, 'The AI could not rate this look. Please try again.'));
       return;
     }
     setAiRating({ score: data.score, verdict: data.verdict, missing: data.missing ?? [] });
