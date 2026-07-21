@@ -5,6 +5,8 @@ import './index.css';
 import './clean-layout.css';
 import './home.css';
 import './home-enhancements.css';
+import './style-studio.css';
+import './fashion-chat.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

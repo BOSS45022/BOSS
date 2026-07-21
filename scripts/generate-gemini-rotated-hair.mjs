@@ -11,7 +11,8 @@ const root = resolve(import.meta.dirname, '..');
 const apiKey = envValue(resolve(root, '.env.local'), 'GEMINI_API_KEY');
 if (!apiKey) throw new Error('GEMINI_API_KEY is missing');
 const ai = new GoogleGenAI({ apiKey });
-const styleReference = readFileSync(resolve(root, 'src/assets/hair-style-sheet-gemini.png')).toString('base64');
+const frontOverlays = readFileSync(resolve(root, 'src/assets/hair-overlays-refined.png')).toString('base64');
+const afroReference = readFileSync(resolve(root, 'src/assets/afro-hair.png')).toString('base64');
 
 const jobs = [
   {
@@ -30,13 +31,23 @@ const selectedJobs = process.argv.includes('--back') ? jobs.filter((job) => job.
 
 for (const job of selectedJobs) {
   const character = readFileSync(resolve(root, `src/assets/${job.target}`)).toString('base64');
-  const prompt = `Create a WIDE LANDSCAPE HAIR-ONLY sprite sheet in ${job.view} for the supplied bald fashion-game character.
+  const prompt = `Rotate the EXACT hairstyles from the supplied 4-by-3 FRONT OVERLAY SHEET into ${job.view} for the supplied bald fashion-game character.
 
 The final canvas must be landscape, approximately 4:3. Output exactly 4 equal columns by 3 equal rows and exactly 12 cells total on perfectly uniform solid #ff00ff with no grid lines. Never add more rows. Use the character image only as the skull position, proportions and view reference. Each hairstyle must naturally wrap around that skull from this camera angle.
 
 Draw detached hair pixels only. Absolutely no head/scalp oval, face, skin, ears, eyes, neck, shoulders, body, text, border, glow, shadow, green pixels or placeholder outline. Do not draw a mannequin under the hair. Empty space inside and around hair must be pure #ff00ff. Detailed natural dark-brown/black hair with clean edges.
 
-Exact order matching the reference styles:
+STYLE CONSISTENCY IS THE MAIN REQUIREMENT:
+- Each output cell must be the same haircut as the cell at the same coordinates in the supplied front overlay sheet.
+- Preserve the exact length, volume, hairline, curl pattern and silhouette identity while changing only the camera angle.
+- Buzz cut must remain visible around the full rear and side of the skull.
+- French crop must keep its textured short top and fade.
+- 360 waves must stay close to the skull in every view.
+- Short curls and medium curls must keep clearly different lengths.
+- Rounded afro must remain a large rounded afro in profile and rear view; never turn it into a small fade, flat top or short curls. Use the separate Afro image as an additional exact volume reference.
+- Braids, twists and dreadlocks must preserve their exact strand structure and length.
+
+Exact cell order:
 Row 1: EMPTY Bald; Buzz cut; French crop; 360 waves.
 Row 2: Short natural curls; Medium natural curls; Rounded afro; Short twists.
 Row 3: Cornrows; Box braids; Short dreadlocks; Slick back.
@@ -46,7 +57,8 @@ Do not show any hairstyle from the front. Every cell must consistently use ${job
     model: 'gemini-3.1-flash-image',
     input: [
       { type: 'text', text: prompt },
-      { type: 'image', data: styleReference, mime_type: 'image/png' },
+      { type: 'image', data: frontOverlays, mime_type: 'image/png' },
+      { type: 'image', data: afroReference, mime_type: 'image/png' },
       { type: 'image', data: character, mime_type: 'image/png' },
     ],
     response_modalities: ['image'],

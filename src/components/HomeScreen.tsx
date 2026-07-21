@@ -5,6 +5,7 @@ type Props = {
   theme: AppTheme;
   onTheme: (theme: AppTheme) => void;
   onPlay: () => void;
+  onStyles: () => void;
 };
 
 const themes: { id: AppTheme; name: string; color: string }[] = [
@@ -13,7 +14,7 @@ const themes: { id: AppTheme; name: string; color: string }[] = [
   { id: 'dark', name: 'Dark', color: '#171717' },
 ];
 
-export function HomeScreen({ theme, onTheme, onPlay }: Props) {
+export function HomeScreen({ theme, onTheme, onPlay, onStyles }: Props) {
   return <main className={`home-screen home-${theme}`}>
     <header><span className="home-mark">C</span><strong>CYL</strong></header>
     <svg className="dark-fashion-mark" viewBox="0 0 120 72" aria-hidden="true">
@@ -26,7 +27,10 @@ export function HomeScreen({ theme, onTheme, onPlay }: Props) {
     </section>
     <footer>
       <div className="home-themes"><span>CHOOSE YOUR THEME</span><div>{themes.map((item) => <button key={item.id} className={theme === item.id ? 'active' : ''} onClick={() => onTheme(item.id)}><i style={{ background:item.color }} />{item.name}</button>)}</div></div>
-      <button className="play-button" onClick={onPlay}>PLAY <span>→</span></button>
+      <div className="home-actions">
+        <button className="ai-style-button" onClick={onStyles}>AI STYLES <span>✦</span></button>
+        <button className="play-button" onClick={onPlay}>PLAY <span>→</span></button>
+      </div>
     </footer>
   </main>;
 }

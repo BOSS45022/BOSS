@@ -332,48 +332,225 @@
   position: absolute;
   z-index: 8;
   left: 50%;
-  bottom: 0;
+  bottom: 8px;
   width: 300px;
   height: 535px;
   transform: translateX(-50%) scale(var(--body-scale));
   transform-origin: bottom center;
   pointer-events: none;
   transition: transform .35s ease;
+  animation: photo-hair-turn .28s cubic-bezier(.22, .8, .3, 1);
+}
+
+@keyframes photo-hair-turn {
+  from { opacity: .2; }
+  to { opacity: 1; }
 }
 
 .photo-hair-sprite i {
   position: absolute;
   top: -4px;
-  left: 100px;
+  left: 115px;
   display: block;
-  width: 100px;
-  height: 101px;
+  width: 70px;
+  height: 71px;
   background-repeat: no-repeat;
   background-size: 400% 300%;
 }
 
-.photo-hair-buzz i,
-.photo-hair-waves i,
-.photo-hair-slick i { top: 2px; }
-.photo-hair-french-crop i { top: -2px; }
-.photo-hair-short-curls i,
-.photo-hair-twists i { top: -7px; }
-.photo-hair-medium-curls i,
-.photo-hair-box-braids i,
-.photo-hair-dreads i { top: -10px; }
-.photo-hair-afro i { top: -13px; }
-.photo-hair-cornrows i { top: -1px; }
+.photo-hair-buzz i { top: -9px; }
+.photo-hair-waves i { top: -11px; }
+.photo-hair-french-crop i { top: -17px; }
+.photo-hair-short-curls i { top: -10px; }
+.photo-hair-twists i { top: -13px; }
+.photo-hair-box-braids i { top: -12px; }
+.photo-hair-dreads i { top: -15px; }
+.photo-hair-cornrows i { top: -10px; }
+.photo-hair-slick i { top: -13px; }
+.photo-hair-medium-curls i {
+  top: -12px;
+  left: 119px;
+  width: 62px;
+  height: 63px;
+}
+.photo-hair-afro i {
+  top: -16px;
+  left: 112px;
+  width: 76px;
+  height: 76px;
+}
+.photo-hair-sprite i.photo-hair-dedicated {
+  background-size: contain;
+  background-position: center;
+}
 
 .photo-hair-sprite-right {
-  transform: translateX(-50%) scaleX(-1) scale(var(--body-scale));
+  bottom: -7px;
+  transform: translateX(-50%) scaleX(1) scale(var(--body-scale));
 }
 
 .photo-hair-sprite-left {
+  bottom: -7px;
+  transform: translateX(-50%) scaleX(-1) scale(var(--body-scale));
+}
+
+.photo-hair-sprite-left.photo-hair-dedicated-wrap {
   transform: translateX(-50%) scaleX(1) scale(var(--body-scale));
+}
+
+.photo-hair-sprite-right.photo-hair-dedicated-wrap {
+  transform: translateX(-50%) scaleX(-1) scale(var(--body-scale));
 }
 
 .photo-hair-sprite-back {
   filter: brightness(.78);
+}
+
+/* The generated profile/back sheets have their own camera angle. These small
+   corrections keep every cut centred on the corresponding head silhouette. */
+.photo-hair-sprite-left i,
+.photo-hair-sprite-right i {
+  top: -10px;
+  left: 113px;
+  width: 72px;
+  height: 72px;
+}
+
+.photo-hair-sprite-left.photo-hair-french-crop i,
+.photo-hair-sprite-right.photo-hair-french-crop i,
+.photo-hair-sprite-left.photo-hair-dreads i,
+.photo-hair-sprite-right.photo-hair-dreads i {
+  top: -15px;
+}
+
+.photo-hair-sprite-back i {
+  top: -10px;
+}
+
+.photo-hair-sprite-left.photo-hair-buzz i.photo-hair-dedicated,
+.photo-hair-sprite-right.photo-hair-buzz i.photo-hair-dedicated {
+  top: -9px;
+  left: 114px;
+  width: 72px;
+  height: 70px;
+}
+
+.photo-hair-sprite-back.photo-hair-buzz i.photo-hair-dedicated {
+  top: -8px;
+  left: 114px;
+  width: 72px;
+  height: 68px;
+}
+
+.photo-hair-sprite-left.photo-hair-afro i.photo-hair-dedicated,
+.photo-hair-sprite-right.photo-hair-afro i.photo-hair-dedicated {
+  top: -18px;
+  left: 104px;
+  width: 92px;
+  height: 88px;
+}
+
+.photo-hair-sprite-back.photo-hair-afro i.photo-hair-dedicated {
+  top: -19px;
+  left: 104px;
+  width: 92px;
+  height: 90px;
+}
+
+/* T-shirts share the character's 300 × 535 coordinate system, so they stay
+   fitted when height or camera angle changes. */
+.photo-top {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 8px;
+  width: 300px;
+  height: 535px;
+  transform: translateX(-50%) scale(var(--body-scale));
+  transform-origin: bottom center;
+  pointer-events: none;
+  animation: photo-hair-turn .28s cubic-bezier(.22, .8, .3, 1);
+}
+
+.photo-top > i {
+  position: absolute;
+  top: 98px;
+  left: 82px;
+  width: 136px;
+  height: 176px;
+  display: block;
+  overflow: visible;
+  background: linear-gradient(100deg, color-mix(in srgb, var(--shirt-color) 84%, #000 16%), var(--shirt-color) 44%, color-mix(in srgb, var(--shirt-color) 88%, #fff 12%));
+  border-radius: 34px 34px 8px 8px;
+  clip-path: polygon(15% 0, 35% 0, 39% 8%, 50% 11%, 61% 8%, 65% 0, 85% 0, 100% 13%, 91% 100%, 9% 100%, 0 13%);
+  filter: drop-shadow(2px 4px 3px rgba(28, 21, 17, .18));
+}
+
+.photo-top > i::before,
+.photo-top > i::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 4px;
+  width: 42px;
+  height: 69px;
+  background: var(--shirt-color);
+  border-radius: 20px 20px 12px 12px;
+}
+
+.photo-top > i::before { left: -17px; transform: rotate(8deg); }
+.photo-top > i::after { right: -17px; transform: rotate(-8deg); }
+
+.photo-top b {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--shirt-accent);
+  font: 800 9px/1 'Arial', sans-serif;
+  letter-spacing: .6px;
+  text-shadow: 0 1px rgba(0, 0, 0, .12);
+}
+
+.photo-top-right {
+  transform: translateX(-50%) scaleX(-1) scale(var(--body-scale));
+}
+
+.photo-top-left > i,
+.photo-top-right > i {
+  top: 100px;
+  left: 102px;
+  width: 102px;
+  height: 181px;
+  border-radius: 25px 30px 12px 10px;
+  clip-path: polygon(22% 0, 67% 0, 88% 8%, 100% 26%, 91% 100%, 14% 100%, 4% 25%);
+}
+
+.photo-top-left > i::before,
+.photo-top-right > i::before {
+  left: -5px;
+  width: 34px;
+  height: 72px;
+}
+
+.photo-top-left > i::after,
+.photo-top-right > i::after {
+  right: -8px;
+  width: 38px;
+  height: 74px;
+}
+
+.photo-top-left b,
+.photo-top-right b { top: 55px; font-size: 7px; }
+
+.photo-top-back > i {
+  top: 98px;
+}
+
+.photo-top-back b {
+  top: 64px;
+  font-size: 7px;
+  opacity: .9;
 }
 
 .fashion-panel {
@@ -382,6 +559,88 @@
   color: #292621;
   background: rgba(248, 244, 236, .94);
   border: 1px solid #cfc5b7;
+}
+
+.tops-browser { min-width: 0; }
+
+.top-type-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.top-type-tabs button {
+  min-height: 34px;
+  border: 1px solid #cfc5b7;
+  border-radius: 18px;
+  background: #eee8de;
+  color: #39342e;
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.top-type-tabs button.active {
+  border-color: #ef513f;
+  background: #ef513f;
+  color: #fff;
+}
+
+.tshirt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  max-height: 520px;
+  overflow: auto;
+  padding: 2px;
+}
+
+.tshirt-grid > button {
+  min-width: 0;
+  padding: 8px 4px 7px;
+  border: 1px solid #d3cabd;
+  background: #eee8de;
+  color: #292621;
+  cursor: pointer;
+}
+
+.tshirt-grid > button.active {
+  border-color: #ef513f;
+  box-shadow: inset 0 0 0 1px #ef513f;
+  background: #fff;
+}
+
+.tshirt-grid > button > i {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 51px;
+  height: 47px;
+  margin: 0 auto 5px;
+  background: var(--shirt-color);
+  color: var(--shirt-accent);
+  clip-path: polygon(18% 0, 35% 0, 40% 10%, 60% 10%, 65% 0, 82% 0, 100% 22%, 86% 38%, 82% 100%, 18% 100%, 14% 38%, 0 22%);
+  font-style: normal;
+}
+
+.tshirt-grid b { font: 800 6px Arial, sans-serif; letter-spacing: .2px; }
+.tshirt-grid span { display: block; overflow: hidden; font-size: 7px; font-weight: 800; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 600px) {
+  .tshirt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-height: 360px; }
+}
+
+@media (max-width: 767px) {
+  .photo-hair-sprite,
+  .photo-top {
+    bottom: 0;
+  }
+
+  .photo-hair-sprite-left,
+  .photo-hair-sprite-right {
+    bottom: -15px;
+  }
 }
 
 .fashion-heading span {
